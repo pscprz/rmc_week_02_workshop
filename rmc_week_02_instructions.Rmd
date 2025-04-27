@@ -24,7 +24,9 @@ The example report is divided into 3 major subsections:
 
 You and your group members will work together to do the analysis, and each group member will be responsible for one section of the report. 
 
-If you have only 2 group members, you will only have to complete the first two sections.
+If you have only 2 group members, you will only have to complete the first two sections (CMNN and NCD).
+
+If there is only one group member, you will only have to complete the first section (CMNN).
 
 ## Collaboration workflow
 
@@ -117,12 +119,6 @@ After pulling, check that all child documents are filled with the appropriate co
 Now, everyone can render the main report by opening daly_report_PARENT.Rmd and clicking 'Knit' in the top right corner.
 
 If there are any errors, discuss with your group members how to fix them. 
-
-# TASK 10: SUBMIT (Everyone)
-
-To submit, each group member should upload their CHILD document Rmd to the workshop page. 
-
-Remember to fill in the attribution section at the end of each child document, with your name and the link to the group's GitHub repo.
 
 # CHALLENGE (OPTIONAL)
 
