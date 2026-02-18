@@ -10,7 +10,9 @@ data_overall <- read_csv(here("data/burden-of-disease-all-causes.csv"))
 
 ```{r}
 # Filter the dataset to include only the three countries chosen by your group.
-data_overall_mini <- "WRITE_YOUR_CODE_HERE"
+data_overall_mini <- data_overall %>% 
+                  filter(Code %in% c("CAN", "DEU", "MEX")) %>% 
+                  select (-Code)
 ```
 
 ## Table of Estimates for Overall Disease Burden Over Time
@@ -18,23 +20,38 @@ data_overall_mini <- "WRITE_YOUR_CODE_HERE"
 ```{r}
 # Here render a table for the DALY burden over time for the three countries.
 # You should pivot the data wider to show each country in a separate column.
-data_overall_wide <- "WRITE_YOUR_CODE_HERE"
+data_overall_wide <- data_overall_mini %>%  
+  pivot_wider(names_from = "Entity", values_from = "DALYs (Disability-Adjusted Life Years) - All causes - Sex: Both - Age: Age-standardized (Rate)")
+
 # Use kable() from the knitr package to render the table.
+kable(data_overall_wide)
 ```
 
 ## Plot Showing Trends in Overall Disease Burden Over Time
 
-```{r}
+```{r include = F}
 # Here, plot a line graph showing the trend of DALY burden for the chosen countries over time. You can use ggplot2 to create this plot. Each country's line should be a different color.
 # NOTE: Use your long 'mini' data frame for plotting, not the wide data used for the table.
+names(data_overall_mini)[3] <- "DALYs_all"
+plot_overall_mini <- ggplot(data_overall_mini, aes(x=Year, y= DALYs_all, group=Entity)) + 
+                    geom_line(aes(color=Entity)) +
+                    geom_point(aes(color=Entity)) +
+                    theme_bw() +
+                    ylab("DALYs (Disability-Adjusted Life Years) - All causes -\nSex: Both - Age: Age-standardized (Rate)")
+```
+```{r}
+plot_overall_mini
 ```
 
 ## Summary of Overall Disease Burden Findings
 
-Provide a brief analysis based on the data presented in the table and chart. Highlight any significant findings or patterns. About 3 sentences.
+
+All three countries exhibit a decreasing trend over time. Nevertheless, Mexico surpasses both Germany and Canada by far. Also there are slight fluctuation from 2005. 
+
+Canada registered the lowest values of the three countries over time, being followed by Germany, specially from 2010 onwards.  
 
 ## Attribution
 
-This section was completed by [WRITE YOUR NAME HERE!]
+This section was completed by *qwertz19*.
 
-The link to the group's GitHub repository is [WRITE THE LINK HERE!]
+The link to the group's GitHub repository is https://github.com/pscprz/rmc_week_02_workshop
